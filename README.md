@@ -1,5 +1,5 @@
 #🧠 Lesion Skin Disease Detection Using Deep Learning (Mini Project)
-#📌 Project Overview
+##📌 Project Overview
 
 Lesion Skin Disease Detection is a deep learning–based web application designed to classify skin lesions as Benign or Malignant using medical image analysis.
 
@@ -7,7 +7,7 @@ This project leverages Convolutional Neural Networks (CNN) and Ensemble Learning
 
 The goal of this project is to assist in early-stage skin cancer detection by providing an AI-powered diagnostic support tool.
 
-#🎯 Objective
+##🎯 Objective
 
 To develop an AI model that accurately classifies skin lesion images.
 
@@ -17,7 +17,7 @@ To deploy the model as a user-friendly web application.
 
 To display prediction confidence levels for better interpretability.
 
-#🏗️ System Architecture
+##🏗️ System Architecture
 
 Image Upload (Frontend)
 
@@ -49,7 +49,7 @@ Confidence score
 
 Clean and responsive UI
 
-#🧪 Technologies Used
+##🧪 Technologies Used
 🔹 Programming Language
 
 Python
@@ -78,7 +78,7 @@ Matplotlib
 
 Scikit-learn
 
-#🧠 Machine Learning Approach
+##🧠 Machine Learning Approach
 1️⃣ Convolutional Neural Network (CNN)
 
 Used for feature extraction from lesion images.
@@ -123,33 +123,35 @@ Testing set
 ✅ Deep learning–based detection
 ✅ Ensemble learning integration
 
-#🖥️ How to Run the Project
+## 🖥️ How to Run the Project
 
-Clone the repository:
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/your-username/lesion-skin-disease-detection.git
+```
 
-'''git clone https://github.com/your-username/lesion-skin-disease-detection.git'''
+### 2️⃣ Navigate to the project folder
+```bash
+cd lesion-skin-disease-detection
+```
+
+### 3️⃣ Install required dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4️⃣ Run the Flask application
+```bash
+python app.py
+```
+
+### 5️⃣ Open in browser
+```
+http://127.0.0.1:5000/
+```
 
 
-Navigate to the project folder:
-
-'''cd lesion-skin-disease-detection'''
-
-
-Install required dependencies:
-
-'''pip install -r requirements.txt'''
-
-
-Run the Flask application:
-
-'''python app.py'''
-
-
-Open in browser:
-
-'''http://127.0.0.1:5000/'''
-
-📈 Model Performance
+##📈 Model Performance
 
 High classification accuracy achieved through CNN + Ensemble approach.
 
@@ -157,13 +159,13 @@ Reduced false negatives in malignant detection.
 
 Improved model robustness compared to single-model approach.
 
-📷 Output Example
+##📷 Output Example
 
 Prediction: Malignant
 
 Confidence: 92.47%
 
-🔬 Applications
+##🔬 Applications
 
 Early detection support for skin cancer
 
@@ -173,7 +175,7 @@ AI-based healthcare systems
 
 Academic and research purposes
 
-⚠️ Disclaimer
+##⚠️ Disclaimer
 
 This project is developed for educational and research purposes only.
 It is not intended to replace professional medical diagnosis.
