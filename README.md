@@ -127,27 +127,27 @@ Testing set
 
 Clone the repository:
 
-git clone https://github.com/your-username/lesion-skin-disease-detection.git
+'''git clone https://github.com/your-username/lesion-skin-disease-detection.git
 
 
 Navigate to the project folder:
 
-cd lesion-skin-disease-detection
+'''cd lesion-skin-disease-detection
 
 
 Install required dependencies:
 
-pip install -r requirements.txt
+'''pip install -r requirements.txt
 
 
 Run the Flask application:
 
-python app.py
+'''python app.py
 
 
 Open in browser:
 
-http://127.0.0.1:5000/
+'''http://127.0.0.1:5000/
 
 📈 Model Performance
 
