@@ -1,5 +1,4 @@
 import os
-from dotenv import load_dotenv
 import numpy as np
 from flask import Flask, render_template, request, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
@@ -9,14 +8,11 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from huggingface_hub import hf_hub_download
 
-# Load environment variables from .env file
-load_dotenv()
-
 app = Flask(__name__)
 CORS(app) # Allow all origins for simpler development with React
 
-# Configure Database - Loaded from .env or system environment
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+# Configure Database - Replace with your actual PostgreSQL credentials if different
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://postgres:Rs%40181075@localhost/lesion_db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
