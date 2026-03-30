@@ -32,7 +32,7 @@ model_path = hf_hub_download(
     filename="skin_lesion_model.h5"
 )
 
-model = load_model(model_path)
+model = load_model(model_path, compile=False)
 
 # Ensure static folder exists
 UPLOAD_FOLDER = 'static/uploads'
