@@ -5,6 +5,11 @@ Lesion Skin Disease Detection is a deep learning–based web application designe
 
 This project leverages Convolutional Neural Networks (CNN) and Ensemble Learning techniques to improve prediction accuracy and reliability. The system provides real-time prediction results along with confidence levels through an interactive web interface.
 
+Additionally, the application integrates:
+
+🔐 User Authentication (PostgreSQL)
+🤖 Cloud-hosted AI model (Hugging Face)
+
 The goal of this project is to assist in early-stage skin cancer detection by providing an AI-powered diagnostic support tool.
 
 ##🎯 Objective
