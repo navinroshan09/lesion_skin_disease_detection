@@ -3,11 +3,18 @@ import numpy as np
 from flask import Flask, render_template, request, jsonify
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+from huggingface_hub import hf_hub_download
+from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
 
 # Load your model
-model = load_model(r"C:\Users\NAVIN ROSHAN S\OneDrive\Desktop\mini project\skin_lesion_model.h5")
+model_path = hf_hub_download(
+    repo_id="navinroshan09/lesion_skin_disease_detection",
+    filename="skin_lesion_model.h5"
+)
+
+model = load_model(model_path)
 
 # Ensure static folder exists
 UPLOAD_FOLDER = 'static/uploads'

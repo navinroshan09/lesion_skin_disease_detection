@@ -1,0 +1,6 @@
+flask
+numpy
+tensorflow
+huggingface-hub
+Pillow
+h5py
