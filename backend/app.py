@@ -38,15 +38,6 @@ model = load_model(model_path)
 UPLOAD_FOLDER = 'static/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve(path):
-    # Serve static files for Vite React app
-    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
-    # Serve React's index.html as fallback for client-side routing
-    return render_template('index.html')
-
 @app.route('/api/register', methods=['POST'])
 def register():
     data = request.json
