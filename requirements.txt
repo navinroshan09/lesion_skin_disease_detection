@@ -4,3 +4,7 @@ tensorflow
 huggingface-hub
 Pillow
 h5py
+Flask-SQLAlchemy
+psycopg2-binary
+Werkzeug
+flask-cors
