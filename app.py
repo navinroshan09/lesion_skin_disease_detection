@@ -159,13 +159,16 @@ model = None
 def load_my_model():
     global model
     if model is None:
+        hf_token = os.getenv("HF_TOKEN")
+        if hf_token:
+            from huggingface_hub import login
+            login(hf_token)
+
         model_path = hf_hub_download(
             repo_id="navinroshan09/lesion_skin_disease_detection",
             filename="skin_lesion_model.h5"
         )
         model = load_model(model_path, compile=False)
-
-load_my_model()
 
 # -------------------- UPLOAD FOLDER --------------------
 UPLOAD_FOLDER = 'static/uploads'
