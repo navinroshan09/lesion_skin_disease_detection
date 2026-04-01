@@ -217,36 +217,81 @@ def login():
     return jsonify({'error': 'Invalid email or password'}), 401
 
 # -------------------- PREDICT --------------------
+# @app.route('/predict', methods=['POST'])
+# def predict():
+#     load_my_model()  # ensure model is loaded
+
+#     if 'file' not in request.files:
+#         return jsonify({'error': 'No file uploaded'}), 400
+    
+#     file = request.files['file']
+#     if file.filename == '':
+#         return jsonify({'error': 'No selected file'}), 400
+    
+#     # Unique filename (FIXED)
+#     filename = str(uuid.uuid4()) + "_" + file.filename
+#     filepath = os.path.join(UPLOAD_FOLDER, filename)
+#     file.save(filepath)
+
+#     # Preprocess image
+#     img = image.load_img(filepath, target_size=(224, 224))
+#     img_array = image.img_to_array(img)
+#     img_array = np.expand_dims(img_array, axis=0) / 255.0
+
+#     prediction = model.predict(img_array)[0]
+#     confidence = float(np.max(prediction)) * 100
+#     result = 'Malignant' if np.argmax(prediction) == 1 else 'Benign'
+
+#     return jsonify({
+#         'result': result,
+#         'confidence': round(confidence, 2),
+#         'image_url': f'/static/uploads/{filename}'
+#     })
+
 @app.route('/predict', methods=['POST'])
 def predict():
-    load_my_model()  # ensure model is loaded
+    try:
+        print("🚀 Predict API called")
 
-    if 'file' not in request.files:
-        return jsonify({'error': 'No file uploaded'}), 400
-    
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({'error': 'No selected file'}), 400
-    
-    # Unique filename (FIXED)
-    filename = str(uuid.uuid4()) + "_" + file.filename
-    filepath = os.path.join(UPLOAD_FOLDER, filename)
-    file.save(filepath)
+        load_my_model()
+        print("✅ Model loaded")
 
-    # Preprocess image
-    img = image.load_img(filepath, target_size=(224, 224))
-    img_array = image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0) / 255.0
+        if model is None:
+            return jsonify({'error': 'Model not loaded'}), 500
 
-    prediction = model.predict(img_array)[0]
-    confidence = float(np.max(prediction)) * 100
-    result = 'Malignant' if np.argmax(prediction) == 1 else 'Benign'
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file uploaded'}), 400
+        
+        file = request.files['file']
+        print("📂 File received:", file.filename)
 
-    return jsonify({
-        'result': result,
-        'confidence': round(confidence, 2),
-        'image_url': f'/static/uploads/{filename}'
-    })
+        filename = str(uuid.uuid4()) + "_" + file.filename
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+        file.save(filepath)
+
+        print("🖼 Image saved at:", filepath)
+
+        img = image.load_img(filepath, target_size=(224, 224))
+        img_array = image.img_to_array(img)
+        img_array = np.expand_dims(img_array, axis=0) / 255.0
+
+        print("🤖 Running prediction...")
+
+        prediction = model.predict(img_array)[0]
+
+        confidence = float(np.max(prediction)) * 100
+        result = 'Malignant' if np.argmax(prediction) == 1 else 'Benign'
+
+        print("✅ Prediction done")
+
+        return jsonify({
+            'result': result,
+            'confidence': round(confidence, 2)
+        })
+
+    except Exception as e:
+        print("❌ ERROR:", str(e))
+        return jsonify({'error': str(e)}), 500
 
 # -------------------- HEALTH CHECK --------------------
 @app.route('/health', methods=['GET', 'POST'])
