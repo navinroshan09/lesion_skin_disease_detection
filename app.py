@@ -225,7 +225,11 @@ def load_my_model():
 
 # -------------------- UPLOAD FOLDER --------------------
 UPLOAD_FOLDER = 'static/uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # -------------------- REGISTER --------------------
 @app.route('/api/register', methods=['POST'])
@@ -285,6 +289,14 @@ def predict():
         
         file = request.files['file']
         print("📂 File received:", file.filename)
+
+        if file.filename == '':
+            return jsonify({'error': 'No selected file'}), 400
+
+        if not allowed_file(file.filename):
+            return jsonify({
+                'error': 'Invalid file type. Only png, jpg, and jpeg are allowed'
+            }), 400
 
         filename = str(uuid.uuid4()) + "_" + file.filename
         filepath = os.path.join(UPLOAD_FOLDER, filename)
