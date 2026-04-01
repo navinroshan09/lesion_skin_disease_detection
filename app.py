@@ -249,7 +249,7 @@ def predict():
     })
 
 # -------------------- HEALTH CHECK --------------------
-@app.route('/health', methods=['GET'])
+@app.route('/health', methods=['POST'])
 def health():
     return jsonify({
         "status": "ok",
