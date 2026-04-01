@@ -253,7 +253,15 @@ def predict():
     try:
         print("🚀 Predict API called")
 
-        load_my_model()
+        try:
+            load_my_model()
+            print("Model loaded")
+        except Exception as e:
+            print("Model loading failed:", str(e))
+            return jsonify({
+                'error': 'Failed to load model',
+                'details': str(e)
+            }), 500
         print("✅ Model loaded")
 
         if model is None:
