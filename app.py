@@ -200,8 +200,7 @@ class User(db.Model):
     password_hash = db.Column(db.String(256), nullable=False)
 
 # ✅ FIX: Delay DB creation (IMPORTANT)
-@app.before_first_request
-def create_tables():
+with app.app_context():
     db.create_all()
 
 # -------------------- MODEL LOADING --------------------
