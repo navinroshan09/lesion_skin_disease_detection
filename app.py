@@ -176,7 +176,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import CORS
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
-from huggingface_hub import hf_hub_download, login as hf_login
+from huggingface_hub import hf_hub_download, login as hf_hub_login
 
 app = Flask(__name__)
 CORS(app)
@@ -213,7 +213,7 @@ def load_my_model():
 
         hf_token = os.getenv("HF_TOKEN")
         if hf_token:
-            hf_login(hf_token)
+            hf_hub_login(token=hf_token)
 
         model_path = hf_hub_download(
             repo_id="navinroshan09/lesion_skin_disease_detection",
@@ -258,7 +258,7 @@ def register():
 
 # -------------------- LOGIN --------------------
 @app.route('/api/login', methods=['POST'])
-def hf_login():
+def login():
     data = request.json
     email = data.get('email')
     password = data.get('password')
